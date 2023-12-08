@@ -40,7 +40,7 @@ app = FastAPI()
 
 @app.get("/generate_token")
 def generate_token():
-    with open("/etc/secrets/AuthKey_39YY8DQPHQ.p8", "r") as f:
+    with open("AuthKey_39YY8DQPHQ.p8", "r") as f:
         private_key = f.read().encode('utf-8')
         team_id = "7KA9SCJT3Y"
         client_id = "com.inpaket.store"
@@ -64,7 +64,7 @@ def generate_token():
             headers={"kid": key_id, "alg": "ES256"}
         )
 
-        return JSONResponse(content={"client_secret": token.decode('utf-8')})
+        return JSONResponse(content={"client_secret": token})
 
 if __name__ == "__main__":
     import uvicorn
